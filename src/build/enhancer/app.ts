@@ -28,13 +28,12 @@ export default ({
   const groups = {
     title: '/components/',
     collapsable: false,
-    children: [],
+    children: [['/components/', 'Getting Started']],
   }
 
   componentContextMap.forEach((_, ind) =>
     groups.children.push(ind.substring(1)),
   )
-
   return {
     name: 'docgen-enhancer',
     content: `

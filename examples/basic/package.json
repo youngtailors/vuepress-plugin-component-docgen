@@ -9,6 +9,7 @@
     "docs:build": "vuepress build docs"
   },
   "dependencies": {
+    "markdown-it-codesandbox-embed": "^0.1.0",
     "vue": "^2.5.21"
   },
   "devDependencies": {
