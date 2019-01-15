@@ -28,7 +28,7 @@ export default ({
   const groups = {
     title: '/components/',
     collapsable: false,
-    children: [['/components/', 'Getting Started']],
+    children: [['/components/', 'Getting Started'] as string[] | string],
   }
 
   componentContextMap.forEach((_, ind) =>

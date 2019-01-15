@@ -7,17 +7,6 @@ module.exports = {
       { text: 'Components', link: '/components/' },
       { text: 'Github', link: 'https://github.com/youngtailors/vue-kawaii' }
     ],
-    // sidebar: [
-    //   // add this if you want to position the library here
-    //   // {
-    //   //   title: "Components"
-    //   // },
-    //   {
-    //     title: "Guide",
-    //     collapsable: false,
-    //     children: ["/guide/", "/guide/getting-started"]
-    //   }
-    // ]
     sidebar: {
         '/guide/': [
             "",
@@ -29,7 +18,7 @@ module.exports = {
     [
       require("../.../../../../../dist/index.js"),
       {
-        rootDir: path.join(__dirname, '../../src/components'),
+        rootDir: path.join(__dirname, '../../../components'),
       },
     ],
   ],
