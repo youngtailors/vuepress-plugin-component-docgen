@@ -17,7 +17,7 @@ const buildSidebar = ({
  * @param  {} {componentContextMap
  * @param  {{componentContextMap:Map<string} }
  * @param  {} IComponentContext[]>}
- * @description adasdas
+ * @description it will create and the custom sidebar to the existing one
  * @return {}
  */
 export default ({
@@ -27,13 +27,13 @@ export default ({
 }) => {
   const multiple = {
     title: 'Components',
-    collapsable: false,
+    // collapsable: false,
     children: buildSidebar({ componentContextMap }),
   }
 
   const groups = {
     title: '/components/',
-    collapsable: false,
+    // collapsable: false,
     children: [['/components/', 'Getting Started'] as string[] | string],
   }
 
