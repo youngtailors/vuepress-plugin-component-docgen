@@ -4,27 +4,31 @@ import { main, app, packageJson } from './templates'
 
 /**
  *
- * @param context
- * @param source
- * @param preview
+ * @param {IComponentContext} context IComponentContext
+ * @param {string} source the source file component we want to preview
+ * @param {string} preview the string of the parent App.vue
  * @description What this file do ?
- * He will create the context of the codeSandebox
+ * @returns {object} it return the app context
  */
 export const urlFormatter = (context: IComponentContext, source, preview) => {
   return getParameters({
     files: {
+      // It is the App context we can add store and other library here
       'index.js': {
         content: main(context),
         isBinary: false,
       },
+      // the component that will take the component preview
       'component.vue': {
         content: source,
         isBinary: false,
       },
+      // the global component vue
       'App.vue': {
         content: app(preview),
         isBinary: false,
       },
+      // all dependecies we need
       'package.json': {
         content: packageJson(),
         isBinary: false,

@@ -21,13 +21,10 @@ import { removeDir } from './utils/file'
 
 /**
  * the module.export needed by vuepress
- * @description receive options
- * @description receive ctx or context
- * watch the types for more infos of what you receive
- *
- * @params options
- * @params ctx
- *
+ * @param {IDocgenOptions} options IDocgenOptions
+ * @param {IVuePressOpenContext} ctx IVuePressOpenContext
+ * @description receive options that user pass receive ctx or context watch the types for more infos of what you receive
+ * @returns {object} return the object that create plugin
  *  */
 module.exports = (options: IDocgenOptions, ctx: IVuePressOpenContext) => {
   /**
@@ -49,6 +46,7 @@ module.exports = (options: IDocgenOptions, ctx: IVuePressOpenContext) => {
     process.exit(1)
   }
 
+  // give the full dir context
   const dirContext = buildDirContext({
     rootDir: options.rootDir as string,
     include: options.include,
@@ -64,10 +62,12 @@ module.exports = (options: IDocgenOptions, ctx: IVuePressOpenContext) => {
   // reset folder dist
   removeDir(dirContext.docgenDir)
 
-  // TODO: Watch & update
+  /**
+   * TODO: Watch & update
+   * */
 
   /**
-   * name if plugins
+   * name of plugins
    * plugins : will just add plugins @vuepress/register-components
    * with the path from all of your components in rootDir
    *

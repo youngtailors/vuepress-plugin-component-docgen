@@ -1,4 +1,6 @@
 import * as path from 'path'
+import { parse } from 'vue-docgen-api'
+
 import {
   IDirContext,
   IComponentFileContext,
@@ -9,6 +11,7 @@ import {
   getFilePathnamesWithFilter,
   extractFileName,
 } from '../../utils/file'
+import logger from '../../utils/logger'
 // import { camelToHyphen } from '../../utils/common'
 
 const isVueFile = (pathname: string): boolean => {
@@ -64,6 +67,10 @@ export const buildComponentContext = ({
   }
 }
 
+/**
+ * @description it will create component file Context
+ * @returns {object} return the component file context
+ */
 export const buildComponentFileContext = ({
   rootDir,
   absolutePathname,
@@ -74,7 +81,26 @@ export const buildComponentFileContext = ({
   const relativePathname = absolutePathname.replace(rootDir, '')
   const fileName = extractFileName(relativePathname) as string
   const dirName = relativePathname.replace(fileName, '')
+
+  /**
+   * we need the real display name given by the user
+   * actually the name and fileName should be the same
+   * maybe we could let them choose the filename they want but
+   * i think it will cause error
+   * TODO: we actually parse with vue-docgen-api 2 times for each one
+   */
+  const componentName = parse(absolutePathname).displayName || ''
   const name = fileName.split('.').shift() as string
+
+  if (name !== componentName) {
+    logger.error(
+      new Error(
+        `The displayName of ${name} is not existing or is not the same. Please provide the same name`,
+      ),
+    )
+    process.exit(1)
+  }
+
   return {
     absolutePathname,
     relativePathname,
@@ -84,6 +110,13 @@ export const buildComponentFileContext = ({
   }
 }
 
+/**
+ *
+ * @description
+ * get the components filepath informations
+ * and create a map of context on it
+ */
+
 export const divideByDirectory = ({
   filePathnames,
   rootDir,
@@ -92,6 +125,7 @@ export const divideByDirectory = ({
   rootDir: string
 }): Map<string, IComponentFileContext[]> => {
   const map = new Map()
+
   filePathnames
     .map((pathname: string) => {
       return buildComponentFileContext({ rootDir, absolutePathname: pathname })
@@ -106,13 +140,25 @@ export const divideByDirectory = ({
   return map
 }
 
+/**
+ * @param  {{dirContext:IDirContext}} {dirContext}
+ * @description create the components context
+ * @returns { object } return dirContext
+ */
 export default ({ dirContext }: { dirContext: IDirContext }) => {
   const { rootDir, include, exclude } = dirContext
+
+  /**
+   * create the final files path context of components
+   */
   const vueFilePathnames = getFilePathnamesWithFilter(rootDir, {
     include,
     exclude,
   }).filter(isVueFile)
 
+  /**
+   * It create the components full context
+   */
   const fileContextMap = divideByDirectory({
     filePathnames: vueFilePathnames,
     rootDir,

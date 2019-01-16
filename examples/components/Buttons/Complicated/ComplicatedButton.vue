@@ -4,11 +4,11 @@
 
 <script>
 export default {
-    name: "BtnComplicated"
+    name: "ComplicatedButton"
 }
 </script>
 
 <docs>
-    <BtnComplicated />
+    <ComplicatedButton />
 </docs>
 

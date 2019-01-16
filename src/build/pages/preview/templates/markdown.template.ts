@@ -1,16 +1,26 @@
 import { createIframe } from '..'
 
+/**
+ * @param {string} url the codesandbox url
+ * @description What it's going on here ?
+ * It is taking the url for calling codesandbox. Codesandbox create an instance
+ * and return an id. Then we create an iframe that embed the codesandbox_id
+ * and add it after the #code
+ * @returns {string} return the preview string
+ */
 export default url => {
   return `
-## Code\n\n\n## Preview\n\n\n
+## Code\n\n\n
 <script>
     fetch("${url}")
     .then(x => x.json())
     .then(data => {
       var giveIframe = ${createIframe};
-      var el = document.querySelector("#preview");
+      var el = document.querySelector("#code");
+      var d = document.createElement("div");
+      el.append(d);
 
-      el.innerHTML = giveIframe(data.sandbox_id);
+      d.innerHTML = giveIframe(data.sandbox_id);
     });
 </script>`
 }

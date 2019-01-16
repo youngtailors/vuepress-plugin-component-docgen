@@ -3,12 +3,12 @@ import { readFile } from '../../utils/file'
 import { IComponentContext, IVuePressPage } from '../../types'
 import { DocsParser, VueParser } from '../../parse'
 import { urlFormatter } from './preview'
-import { markdown } from './preview/templates'
+import { createPreviewCodeSandbox } from './preview/templates'
 
 /**
  * @description What this file do ?
  * receiving context check IComponentContext for more infos of what you can have
- * @return IVuePressPage check type for more info about what you should return
+ * @return {IVuePressPage} check type for more info about what you should return
  */
 export default ({ context }: { context: IComponentContext }): IVuePressPage => {
   /**
@@ -79,7 +79,7 @@ export default ({ context }: { context: IComponentContext }): IVuePressPage => {
     /**
      * adding the preview codesandbox
      */
-    docs += markdown(url)
+    docs += createPreviewCodeSandbox(url)
   } else {
     /**
      * if no docs found just taking default preview value with ''
