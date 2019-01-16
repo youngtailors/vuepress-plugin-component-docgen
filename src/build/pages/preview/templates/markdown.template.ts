@@ -12,15 +12,26 @@ export default url => {
   return `
 ## Code\n\n\n
 <script>
-    fetch("${url}")
-    .then(x => x.json())
-    .then(data => {
-      var giveIframe = ${createIframe};
-      var el = document.querySelector("#code");
-      var d = document.createElement("div");
-      el.append(d);
-
-      d.innerHTML = giveIframe(data.sandbox_id);
-    });
+    export default {
+      mounted() {
+        fetch("${url}")
+        .then(x => x.json())
+        .then(data => {
+          var check = document.querySelector("#iframeMeContainer");
+          if (check) {
+            check.parentNode.removeChild(check);
+          }
+          setTimeout(() => {
+            var giveIframe = ${createIframe};
+            var el = document.querySelector("#code");
+            var d = document.createElement("div");
+            d.id = 'iframeMeContainer';
+            el.append(d);
+      
+            d.innerHTML = giveIframe(data.sandbox_id);
+          }, 0)
+        });
+      }
+    }
 </script>`
 }
