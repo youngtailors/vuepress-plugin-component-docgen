@@ -33,7 +33,6 @@ module.exports = (options: IDocgenOptions, ctx: IVuePressOpenContext) => {
    * */
 
   setDefaultOptions(options)
-
   /**
    * if definitely no rootDir just crash
    */

@@ -1,6 +1,6 @@
 import { getParameters } from 'codesandbox-import-utils/lib/api/define'
-import { IComponentContext } from '../../../types'
-import { main, app, packageJson } from './templates'
+import { IComponentContext } from '../../types'
+import { main, app, packageJson } from '../../template'
 
 /**
  *
@@ -10,7 +10,7 @@ import { main, app, packageJson } from './templates'
  * @description What this file do ?
  * @returns {object} it return the app context
  */
-export const urlFormatter = (context: IComponentContext, source, preview) => {
+export default (context: IComponentContext, source, preview) => {
   return getParameters({
     files: {
       // It is the App context we can add store and other library here
@@ -30,7 +30,7 @@ export const urlFormatter = (context: IComponentContext, source, preview) => {
       },
       // all dependecies we need
       'package.json': {
-        content: packageJson(),
+        content: JSON.stringify(packageJson()),
         isBinary: false,
       },
     },

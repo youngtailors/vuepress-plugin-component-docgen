@@ -1,4 +1,4 @@
-import { createIframe } from '..'
+import { createIframe } from './iframe'
 
 /**
  * @param {string} url the codesandbox url

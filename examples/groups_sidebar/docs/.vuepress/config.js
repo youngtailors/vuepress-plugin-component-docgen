@@ -10,8 +10,15 @@ module.exports = {
     sidebar: {
         '/guide/': [
             "",
-            "getting-started"
-        ]
+            "getting-started", 
+            {
+              title: "OK",
+              collapsable: false,
+              children: [
+                ""
+              ]
+            }
+        ],
     }
   },
   plugins: [

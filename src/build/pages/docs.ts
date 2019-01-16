@@ -2,8 +2,8 @@ import { parse } from 'vue-docgen-api'
 import { readFile } from '../../utils/file'
 import { IComponentContext, IVuePressPage } from '../../types'
 import { DocsParser, VueParser } from '../../parse'
-import { urlFormatter } from './preview'
-import { createPreviewCodeSandbox } from './preview/templates'
+import { createPreviewCodeSandbox } from '../../template'
+import { urlFormatter } from '.'
 
 /**
  * @description What this file do ?
