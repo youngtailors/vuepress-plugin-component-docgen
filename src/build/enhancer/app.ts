@@ -13,7 +13,13 @@ const buildSidebar = ({
   }
   return sidebar
 }
-
+/**
+ * @param  {} {componentContextMap
+ * @param  {{componentContextMap:Map<string} }
+ * @param  {} IComponentContext[]>}
+ * @description adasdas
+ * @return {}
+ */
 export default ({
   componentContextMap,
 }: {

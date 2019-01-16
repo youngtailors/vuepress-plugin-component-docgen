@@ -13,8 +13,15 @@ const isIncludeVueFile = (dirPathname: string): boolean => {
   )
 }
 
+/**
+ * @param  {{dirContext:IDirContext}} {dirContext}
+ * @description we get all vue file and register globally with the registrer-components
+ * @return {object} it register globally all components
+ */
 export default ({ dirContext }: { dirContext: IDirContext }) => {
   const { rootDir, include, exclude } = dirContext
+
+  // it create an array of full view path in the dir context
   const dirPathnames = getDirPathnamesWithFilter(rootDir, {
     include,
     exclude,
