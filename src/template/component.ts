@@ -4,12 +4,16 @@ export default `
 > {{description}}
 {{/if}}
 
+{{#greaterThan props 0}}
 ## Props
 | Prop name     | Type        | Default  | Description  |
 | ------------- |-------------| ---------| -------------|
 {{#each props}}
 | {{@key}} | {{this.type.name}} | {{this.defaultValue.value}} | {{{this.description}}} |
 {{/each}}
+{{/greaterThan}}
+
+{{#greaterThan methods 0}}
 ## Methods
 {{#each methods}}
 <span style="color:rgba(34, 167, 240, 1)"><h3>{{this.name}}</h3></span>
@@ -30,6 +34,8 @@ export default `
 {{else}}
 {{/greaterThan}}
 {{/each}}
+{{/greaterThan}}
+
 
 {{#greaterThan events 0}}
 ## Events
