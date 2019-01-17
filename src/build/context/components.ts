@@ -101,12 +101,15 @@ export const buildComponentFileContext = ({
     process.exit(1)
   }
 
+  const root = dirName === '/'
+
   return {
     absolutePathname,
     relativePathname,
     dirName,
     fileName,
     name,
+    root,
   }
 }
 
@@ -156,6 +159,11 @@ export default ({ dirContext }: { dirContext: IDirContext }) => {
     exclude,
   }).filter(isVueFile)
 
+  logger.log(
+    '-------------------------------- vueFilePathnames --------------------------------',
+    vueFilePathnames,
+  )
+
   /**
    * It create the components full context
    */
@@ -163,6 +171,10 @@ export default ({ dirContext }: { dirContext: IDirContext }) => {
     filePathnames: vueFilePathnames,
     rootDir,
   })
+  logger.log(
+    '-------------------------------- fileContextMap --------------------------------',
+    fileContextMap,
+  )
 
   const componentContextMap = new Map()
   for (const [dirName, fileContexts] of fileContextMap.entries()) {

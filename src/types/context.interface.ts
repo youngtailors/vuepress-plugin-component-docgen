@@ -14,6 +14,7 @@ export interface IComponentFileContext {
   dirName: string
   absolutePathname: string
   relativePathname: string
+  root: boolean
 }
 
 export interface IComponentContext extends IComponentFileContext {

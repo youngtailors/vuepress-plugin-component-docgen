@@ -11,6 +11,7 @@ const buildSidebar = ({
       sidebar.push(context.link)
     })
   }
+
   return sidebar
 }
 /**
