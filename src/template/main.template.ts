@@ -9,6 +9,7 @@ Vue.component("${context.name}", component);
 
 new Vue({
     el: "#app",
+
     components: { App },
     template: "<App/>"
 });

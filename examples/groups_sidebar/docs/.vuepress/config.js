@@ -1,4 +1,5 @@
 const path = require('path')
+
 module.exports = {
   title: 'Vue Kawaii',
   themeConfig: {
@@ -26,6 +27,10 @@ module.exports = {
       require("../.../../../../../dist/index.js"),
       {
         rootDir: path.join(__dirname, '../../../components'),
+        vuePlugins: [{
+          name: 'i18n',
+          path: path.resolve(__dirname, "../../plugins/translation/i18n.js")
+        }]
       },
     ],
   ],

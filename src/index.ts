@@ -31,7 +31,6 @@ module.exports = (options: IDocgenOptions, ctx: IVuePressOpenContext) => {
    *  initOptions will update the rootdir options by options pass
    *  or by the current dir
    * */
-
   setDefaultOptions(options)
   /**
    * if definitely no rootDir just crash
